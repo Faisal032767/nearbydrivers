@@ -77,17 +77,9 @@
     line-height: 1.2;
   }
 
-  .title span{
-    /* color:wheat; */
-  
-    font-weight: bold;
- 
-  color: transparent; 
-  
-  
-  /* -webkit-text-stroke: 2px rgb(240, 241, 240); */
-  -webkit-text-stroke: 1px rgb(255, 255, 0,.75); 
-  /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+ .title span{
+    color:wheat;
+   
   }
   
   
