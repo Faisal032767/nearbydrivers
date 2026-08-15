@@ -1,0 +1,200 @@
+.fleetSection {
+    width: 100%;
+    border-top: 1px solid rgb(255, 255, 255,.3);
+    padding: 2.5rem 1rem;
+    /* background-color: #f8fafc; */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1100px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    /* color: #0f172a; */
+    margin-bottom: 0.3rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    /* color: #64748b; */
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  
+  /* Compact Card with Image */
+  .card {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .popularCard {
+    border: 2px solid #2563eb;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12);
+  }
+  
+  .popularBadge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+  }
+  
+  /* Card Image Header */
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+  }
+  
+  .cardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .cardImg {
+    transform: scale(1.05);
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(15,23,42,0.4) 100%);
+  }
+  
+  /* Card Body Content */
+  .cardBody {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  .cardTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+  }
+  
+  .priceContainer {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .priceWrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+  }
+  
+  .price {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+  
+  .unit {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+  
+  .extraTag {
+    display: inline-block;
+    margin-top: 0.2rem;
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 8px;
+  }
+  
+  .featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  
+  .featureItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: #334155;
+  }
+  
+  .checkIcon {
+    color: #16a34a;
+    font-size: 0.75rem;
+  }
+  
+  .bookBtn {
+    width: 100%;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .bookBtn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }

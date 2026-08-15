@@ -1,0 +1,237 @@
+.planSection {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  /* background-color: #f8fafc; */
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  /* color: #0f172a; */
+  margin-bottom: 0.2rem;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  /* color: #64748b; */
+}
+
+.categoryBlock {
+  margin-bottom: 1.5rem;
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  /* color: #1e293b; */
+  color: rgba(255, 255, 0, 0.902);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Single column stack for full-width horizontal cards */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Horizontal Card Row Layout */
+.card {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.popularCard {
+  border: 1.5px solid #2563eb;
+  background-color: #1058e9;
+  background-color: #d2baba;
+  
+}
+
+.popularBadge {
+  position: absolute;
+  top: -9px;
+  left: 20px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Section 1: Icon & Plan Details */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1.2;
+  min-width: 200px;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.iconCircle {
+  width: 36px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.planTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.1rem;
+}
+
+.planSubtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Section 2: Pricing */
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 0.8;
+  min-width: 120px;
+  padding: 0;
+  border: none;
+  margin-bottom: 0;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.price {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.unit {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.extraTag {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  margin-top: 0.1rem;
+}
+
+/* Section 3: Feature Bullet Points */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.3rem 1rem;
+  flex: 2;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.checkIcon {
+  color: #16a34a;
+  font-size: 0.7rem;
+}
+
+/* Section 4: Action Button */
+.bookPlanBtn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.bookPlanBtn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments for Mobile/Tablets */
+@media screen and (max-width: 868px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding: 1rem;
+  }
+
+  .featureList {
+    grid-template-columns: 1fr;
+  }
+
+  .priceContainer {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .bookPlanBtn {
+    width: 100%;
+  }
+}

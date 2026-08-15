@@ -1,0 +1,132 @@
+.feedbackSection {
+    width: 100%;
+    padding: 3rem 1rem;
+    /* background-color: #ffffff; */
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(255, 255, 255,.3);
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1100px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    /* color: #0f172a; */
+    margin-bottom: 0.3rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    color: #e1e4ea;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  
+  /* Card Container */
+  .card {
+    position: relative;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-color: #cbd5e1;
+  }
+  
+  .quoteIcon {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    font-size: 1.4rem;
+    color: #e2e8f0;
+  }
+  
+  .ratingRow {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .starIcon {
+    color: #f59e0b; /* Amber Gold Star */
+    font-size: 0.85rem;
+  }
+  
+  .comment {
+    font-size: 0.88rem;
+    color: #334155;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    font-style: italic;
+    flex: 1;
+  }
+  
+  /* Author Profile Section */
+  .authorInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .authorDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .authorName {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .authorRole {
+    font-size: 0.72rem;
+    color: #64748b;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }
