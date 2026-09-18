@@ -188,21 +188,14 @@ const Footer = () => {
       </footer>
 
       {/* Pop-up Overlay / Fullscreen Modal for the Calculator */}
-      {isCalculatorOpen && (
-        <div className={styles.modalOverlay} onClick={() => setIsCalculatorOpen(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button 
-              type="button" 
-              className={styles.closeModalBtn} 
-              onClick={() => setIsCalculatorOpen(false)}
-              aria-label="Close Calculator"
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-            <UpiMerchantCalculator />
-          </div>
-        </div>
-      )}
+ {/* Pop-up Overlay for the Calculator */}
+{isCalculatorOpen && (
+  <div className={styles.modalOverlay} onClick={() => setIsCalculatorOpen(false)}>
+    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <UpiMerchantCalculator onClose={() => setIsCalculatorOpen(false)} />
+    </div>
+  </div>
+)}
     </>
   );
 };
