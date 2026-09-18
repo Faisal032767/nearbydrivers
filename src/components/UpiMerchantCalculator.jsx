@@ -1,10 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faCalculator, 
   faIndianRupeeSign, 
   faCircleCheck, 
-  faShieldHalved, 
   faCoins, 
   faQrcode, 
   faPenToSquare, 
@@ -12,25 +11,27 @@ import {
   faRotateLeft, 
   faXmark,
   faLayerGroup,
-  faCheck
+  faCheck,
+  faHandshakeAngle
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './UpiMerchantCalculator.module.css';
 
 export default function UpiMerchantCalculator({ onClose }) {
   const [basePrice, setBasePrice] = useState('');
   const [upiId, setUpiId] = useState('');
-  const [merchantName, setMerchantName] = useState('');
   const [showConfig, setShowConfig] = useState(false);
-  const [splitMode, setSplitMode] = useState(false); // Toggle between Single & Split
+  const [splitMode, setSplitMode] = useState(false);
   const [activeSplitIndex, setActiveSplitIndex] = useState(0);
   const [paidParts, setPaidParts] = useState({});
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const handleReset = () => {
     setBasePrice('');
     setUpiId('');
-    setMerchantName('');
     setActiveSplitIndex(0);
     setPaidParts({});
+    setShowThankYou(false);
+    setSplitMode(false);
   };
 
   const calculation = useMemo(() => {
@@ -57,7 +58,7 @@ export default function UpiMerchantCalculator({ onClose }) {
       splits.push({
         part: partNum,
         amount: Number(chunk.toFixed(2)),
-        fee: 0 // Always 0% MDR since <= 1999
+        fee: 0
       });
       remaining = Number((remaining - chunk).toFixed(2));
       partNum++;
@@ -86,6 +87,20 @@ export default function UpiMerchantCalculator({ onClose }) {
     };
   }, [basePrice]);
 
+  // Check if all split parts are completed
+  useEffect(() => {
+    if (splitMode && calculation.splits.length > 0) {
+      const allDone = calculation.splits.every((_, idx) => paidParts[idx] === true);
+      if (allDone) {
+        setShowThankYou(true);
+        const timer = setTimeout(() => {
+          handleReset();
+        }, 2500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [paidParts, splitMode, calculation.splits]);
+
   // Determine current active amount for QR generation
   const activeQrAmount = useMemo(() => {
     if (calculation.isZero) return 0;
@@ -102,13 +117,12 @@ export default function UpiMerchantCalculator({ onClose }) {
     if (!cleanUpi || activeQrAmount <= 0) return '';
 
     const formattedAmount = activeQrAmount.toFixed(2);
-    const encodedName = encodeURIComponent(merchantName.trim() || 'Merchant');
     const note = splitMode 
       ? encodeURIComponent(`Part ${activeSplitIndex + 1} of ${calculation.splits.length}`)
       : 'Invoice%20Payment';
 
-    return `upi://pay?pa=${cleanUpi}&pn=${encodedName}&am=${formattedAmount}&cu=INR&tn=${note}`;
-  }, [activeQrAmount, upiId, merchantName, splitMode, activeSplitIndex, calculation.splits.length]);
+    return `upi://pay?pa=${cleanUpi}&pn=Merchant&am=${formattedAmount}&cu=INR&tn=${note}`;
+  }, [activeQrAmount, upiId, splitMode, activeSplitIndex, calculation.splits.length]);
 
   const qrCodeUrl = upiUri 
     ? `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiUri)}&margin=1`
@@ -121,6 +135,30 @@ export default function UpiMerchantCalculator({ onClose }) {
 
   return (
     <div className={styles.calculatorCard}>
+      {/* Thank You Completion Modal */}
+      {showThankYou && (
+        <div className={styles.thankYouOverlay}>
+          <div className={styles.thankYouModal}>
+            <div className={styles.thankYouIcon}>
+              <FontAwesomeIcon icon={faHandshakeAngle} />
+            </div>
+            <h3>Thank You!</h3>
+            <p>All split payments have been completed successfully.</p>
+            <div className={styles.thankYouAmount}>
+              ₹{calculation.originalAmount.toFixed(2)} Received
+            </div>
+            <small>Resetting back to start...</small>
+            <button 
+              type="button" 
+              className={styles.thankYouBtn} 
+              onClick={handleReset}
+            >
+              Done / Start New
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className={styles.cardHeader}>
         <div className={styles.headerLeft}>
@@ -166,26 +204,17 @@ export default function UpiMerchantCalculator({ onClose }) {
           </button>
         </div>
 
-        {/* UPI Setup Drawer */}
+        {/* UPI Setup Drawer (Merchant Name Removed) */}
         {showConfig && (
           <div className={styles.upiConfigBox}>
             <div className={styles.configField}>
-              <label>Your Merchant UPI ID (Required)*</label>
+              <label>Merchant UPI ID (Required)*</label>
               <input 
                 type="text" 
                 value={upiId} 
                 onChange={(e) => setUpiId(e.target.value)} 
                 placeholder="e.g. mobile@upi or name@bank"
                 className={!upiId.trim() ? styles.inputWarning : ''}
-              />
-            </div>
-            <div className={styles.configField}>
-              <label>Business / Merchant Name</label>
-              <input 
-                type="text" 
-                value={merchantName} 
-                onChange={(e) => setMerchantName(e.target.value)} 
-                placeholder="e.g. Nearby Drivers"
               />
             </div>
           </div>
@@ -207,7 +236,7 @@ export default function UpiMerchantCalculator({ onClose }) {
                 setPaidParts({});
               }}
               className={styles.amountInput}
-              placeholder="Enter value (e.g. 5000)"
+              placeholder="Enter Amount"
             />
           </div>
         </div>
